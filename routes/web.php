@@ -36,13 +36,13 @@ Route::prefix('admin')->group(function() {
 // superadmin
 Route::prefix('gcj')->group(function() {
     Route::get('/', 'SuperAdminController@index')->name('gcj.home');
-    Route::get('/login', 'Super\SuperAdminLogin@showLoginForm')->name('gcj.login');
-    Route::post('/login', 'Super\SuperAdminLogin@login')->name('gcj.login.submit');
-    Route::get('/logout', 'Super\SuperAdminLogin@logout')->name('gcj.logout');
+    Route::get('/login', 'Super\SuperAdminLoginController@showLoginForm')->name('gcj.login');
+    Route::post('/login', 'Super\SuperAdminLoginController@login')->name('gcj.login.submit');
+    Route::get('/logout', 'Super\SuperAdminLoginController@logout')->name('gcj.logout');
 
-    Route::get('/password/reset', 'SuperAdmin\ForgotPasswordController@showLinkRequestForm')->name('gcj.password.request');
-    Route::post('/password/email', 'SuperAdmin\ForgotPasswordController@sendResetLinkEmail')->name('gcj.password.email');
-    Route::get('/password/reset/{token}', 'SuperAdmin\ResetPasswordController@showResetForm')->name('gcj.password.reset');
-    Route::post('/password/reset', 'SuperAdmin\ResetPasswordController@reset');
+    Route::get('/password/reset', 'Super\ForgotPasswordController@showLinkRequestForm')->name('gcj.password.request');
+    Route::post('/password/email', 'Super\ForgotPasswordController@sendResetLinkEmail')->name('gcj.password.email');
+    Route::get('/password/reset/{token}', 'Super\ResetPasswordController@showResetForm')->name('gcj.password.reset');
+    Route::post('/password/reset', 'Super\ResetPasswordController@reset');
    
 });

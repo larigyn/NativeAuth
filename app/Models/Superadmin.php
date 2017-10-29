@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\Notifications\AdminResetPasswordNotification;
+use App\Notifications\SuperAdminResetPasswordNotification;
 
 
 class Superadmin extends Authenticatable
@@ -39,7 +39,7 @@ class Superadmin extends Authenticatable
      */
     public function sendPasswordResetNotification($token)
     {
-        $this->notify(new AdminResetPasswordNotification($token));
+        $this->notify(new SuperAdminResetPasswordNotification($token));
     }
 
 }

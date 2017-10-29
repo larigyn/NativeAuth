@@ -83,7 +83,7 @@
                 </div>
 
                 <div class="links">
-                    @component('components.who')
+                    @component('components.online')
                     @endcomponent
                 </div>
             </div>

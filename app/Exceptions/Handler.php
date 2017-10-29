@@ -61,15 +61,11 @@ class Handler extends ExceptionHandler
 
     /**
     * this has beed remove from the latest version(5.5) of laravel
-    *
-    *
+    * if you want to look the php file 
+    * its in the handler.php
     */
     protected function unauthenticated($request, AuthenticationException $exception)
     {
-
-        if ($request->expectsJson()) {
-            return response()->json(['error' => 'Unauthenticated.'], 401);
-        }
 
         $guard = array_get($exception->guards(), 0);
 
@@ -78,14 +74,17 @@ class Handler extends ExceptionHandler
                 $login = 'admin.login'; //this goes to the route
                 break;
 
-            case 'gcj':
+                case 'gcj':
                 $login = 'gcj.login'; //this goes to the route
                 break;
 
-            default:
+                default:
                 $login = 'login'; //this goes to the route
                 break;
+            }
+        
+        return $request->expectsJson()
+                    ? response()->json(['message' => $exception->getMessage()], 401)
+                    : redirect()->guest(route('$login'));
         }
-        return redirect()->guest(route($login));
     }
-}
