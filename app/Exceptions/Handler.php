@@ -4,13 +4,13 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Auth\AuthenticationException;
-// use Illuminate\Http\Resources\Json\response;
-// use Symfony\Component\HttpKernel\Tests\HttpCache\request;
+use Illuminate\Http\Resources\Json\response;
+use Symfony\Component\HttpKernel\Tests\HttpCache\request;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 //or use this below
-use Request;
-use Response;
+// use Request;
+// use Response;
 
 
 class Handler extends ExceptionHandler
@@ -83,8 +83,9 @@ class Handler extends ExceptionHandler
                 break;
             }
         
-        return $request->expectsJson()
-                    ? response()->json(['message' => $exception->getMessage()], 401)
-                    : redirect()->guest(route('$login'));
+        // return $request->expectsJson()
+        //             ? response()->json(['message' => $exception->getMessage()], 401)
+        //             : redirect()->guest(route('login'));
+            return redirect()->guest(route($login));
         }
     }

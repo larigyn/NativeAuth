@@ -36,7 +36,10 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;
+                        {{-- &nbsp; --}}
+                        {{-- @if (Auth::check())
+                            <li><a href="{{ url('/logout') }}">Logout</a></li>
+                        @endif --}}
                     </ul>
 
                     <!-- Right Side Of Navbar -->
