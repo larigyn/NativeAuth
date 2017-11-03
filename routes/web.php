@@ -15,7 +15,7 @@ Route::get('/', function () {
 	return view('welcome');
 });
 
-Route::group(['middleware' => 'revalidate'],function(){
+Route::group(['middleware' => 'preventBackHistory'],function(){
 	Auth::routes();
 	Route::get('/home', 'HomeController@index')->name('home');
 	Route::get('/user/logout', 'Auth\LoginController@userLogout')->name('user.logout');
@@ -27,7 +27,7 @@ Route::group(['middleware' => 'revalidate'],function(){
 // admin
 Route::prefix('admin')->group(function() {
 	Route::get('/', 'AdminController@index')->name('admin.home');
-	Route::get('/login', 'Admin\AdminLogin@showLoginForm')->name('admin.login');
+	Route::get('/login', 'Admin\AdminLogin@showLoginForm')->name('admin.login')->middleware('preventBackHistory');
 	Route::post('/login', 'Admin\AdminLogin@login')->name('admin.login.submit');
 	Route::post('/logout', 'Admin\AdminLogin@logout')->name('admin.logout');
 
@@ -40,7 +40,7 @@ Route::prefix('admin')->group(function() {
 // superadmin
 Route::prefix('gcj')->group(function() {
 	Route::get('/', 'SuperAdminController@index')->name('gcj.home');
-	Route::get('/login', 'Super\SuperAdminLoginController@showLoginForm')->name('gcj.login');
+	Route::get('/login', 'Super\SuperAdminLoginController@showLoginForm')->name('gcj.login')->middleware('preventBackHistory');
 	Route::post('/login', 'Super\SuperAdminLoginController@login')->name('gcj.login.submit');
 	Route::get('/logout', 'Super\SuperAdminLoginController@logout')->name('gcj.logout');
 
